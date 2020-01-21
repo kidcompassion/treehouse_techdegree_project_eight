@@ -1,0 +1,11 @@
+extends layout
+
+block content
+
+  h1 all books
+
+  each book in allBooks
+    p= book.title
+    p= book.author
+    p= book.genre
+    p= book.year

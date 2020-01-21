@@ -1,0 +1,12 @@
+extends layout
+
+block content
+
+	h1= title
+    
+	form(action="/books/new" method="post")
+		input(type="text" name="title" placeholder="Title")
+		input(type="text" name="author" placeholder="Author")
+		input(type="text" name="genre" placeholder="Genre")
+		input(type="text" name="year" placeholder="Year")
+		input(type="submit")
