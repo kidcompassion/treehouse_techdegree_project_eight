@@ -95,3 +95,17 @@ input[type=text] {
 .error {
   color: rgb(236, 15, 15);
 }
+
+#pagination{
+  display: flex;
+  flex-direction: row;
+}
+#pagination li {
+  display: flex;
+}
+
+#pagination li:after{
+  content:' | ';
+  padding: 0px 10px;
+  color: #e5e5e5;
+}

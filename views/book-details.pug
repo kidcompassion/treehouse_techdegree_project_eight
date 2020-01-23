@@ -3,6 +3,8 @@ extends layout
 block content
 
   h1 Update Book
+
+  include errors
   
   form(method='POST' action='/books/'+book.id)
     p
@@ -22,6 +24,6 @@ block content
   
   form(method='POST' action='/books/'+book.id + '/delete')
     p
-      a.button(href="books") Cancel
+      a.button(href="/") Cancel
     p
       input(type="submit", value="Delete Book") 
