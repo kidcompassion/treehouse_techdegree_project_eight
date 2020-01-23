@@ -2,10 +2,22 @@ extends layout
 
 block content
 
-  h1 all books
+  h1 index
+  p
+    a.button(href='/books/new') Create New Book
 
-  each book in allBooks
-    p= book.title
-    p= book.author
-    p= book.genre
-    p= book.year
+  table
+    thead
+      tr
+        th Title
+        th Author
+        th Genre
+        th Year
+    tbody
+      each book in allBooks
+        tr
+          td 
+            a(href='/books/'+ book.id) #{book.title}
+          td= book.author
+          td= book.genre
+          td= book.year

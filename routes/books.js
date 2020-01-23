@@ -23,22 +23,39 @@ router.get('/', asyncHandler(async (req, res) => {
   
 
   router.get('/new', asyncHandler(async(req,res)=>{
-    res.render('new-book', {title: 'my form'});
+    res.render('new-book');
   }));
 
   router.post('/new', asyncHandler(async (req, res)=>{
     //form will pass data via req.body
     const book = await Book.create(req.body);
-    res.redirect(book.id);
-    
-    
+    res.send(book);
   }));
 
   router.get('/:id', asyncHandler(async (req, res) => {
     const book = await Book.findByPk(req.params.id);
-    res.render('book-details', {book} );
+    if(book){
+      res.render('book-details', {book} );
+    } else {
+      res.sendStatus(404);
+    }
+    
   }));
 
+  router.post('/:id', asyncHandler(async (req, res)=>{
+    //form will pass data via req.body
+    const book = await Book.findByPk(req.params.id);
+    await book.update(req.body);
+    res.redirect('/books/' + book.id);
+    
+  }));
+
+  router.post('/:id/delete', asyncHandler(async (req,res)=>{
+    const book = await Book.findByPk(req.params.id);
+    await book.destroy();
+    res.redirect('/books/');
+
+  }));
 
 
 module.exports = router;
