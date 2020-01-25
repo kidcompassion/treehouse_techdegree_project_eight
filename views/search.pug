@@ -1,0 +1,26 @@
+extends layout
+
+block content
+
+  h1 Showing All Search Results for ' #{term} '
+
+  include error
+  
+  p
+    a.button(href='/') Home
+
+  table
+    thead
+      tr
+        th Title
+        th Author
+        th Genre
+        th Year
+    tbody
+      each book in searchResults
+        tr
+          td 
+            a(href='/books/'+ book.id) #{book.title}
+          td= book.author
+          td= book.genre
+          td= book.year

@@ -8,7 +8,6 @@ var logger = require('morgan');
 const db = require('./db');
 const { Book } = db.models;
 
-
 var indexRouter = require('./routes/index');
 var booksRouter = require('./routes/books');
 
@@ -30,20 +29,25 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
 
-// error handler
+//ERROR HANDLING MIDDLEWARE
+
+
+
+// Return the error to console and pass data to template
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
+  // Print full error to console
+  console.log('Error details: ' + err);
   res.status(err.status || 500);
-  res.render('error');
+  res.render('error', {err});
 });
+
+
+// 404
+app.get('*', function(req, res){
+  console.log(res);
+  res.status(404).render('page-not-found');
+});
+
 
 module.exports = app;
