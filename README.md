@@ -10,16 +10,12 @@ To run this project:
 * project runs on localhost:3000
 
 
-What I did in it
---------------------------------
-
-Where to find evaluation criteria
+Where to find things
 ---------------------------------
 
 * Routes are broken into two files - root route is in index.js, and redirects to '/books'; books is in books.js
 * Project includes requested views and one additional template for the search returns
-
-
+* Middleware for error handling is in app.js
 
 
 To Do List
