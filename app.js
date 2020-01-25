@@ -21,20 +21,22 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(bodyParser.urlencoded({ extended: false }))
+
 // parse application/json
 app.use(bodyParser.json())
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+// Routing
 app.use('/', indexRouter);
 app.use('/books', booksRouter);
 
 
-//ERROR HANDLING MIDDLEWARE
+/**
+ * Middleware: Return the error to console and pass data to template
+ */
 
-
-
-// Return the error to console and pass data to template
 app.use(function(err, req, res, next) {
   // Print full error to console
   console.log('Error details: ' + err);
@@ -42,12 +44,9 @@ app.use(function(err, req, res, next) {
   res.render('error', {err});
 });
 
-
-// 404
+// Handle 404 errors by serving correct page template
 app.get('*', function(req, res){
-  console.log(res);
   res.status(404).render('page-not-found');
 });
-
 
 module.exports = app;

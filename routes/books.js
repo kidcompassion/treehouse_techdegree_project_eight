@@ -84,7 +84,6 @@ router.get('/page/:num', checkIfPageOne, asyncHandler(async(req,res) => {
   res.render('index', {allBooks, totalPages} );                                
  }));
 
-
 /**
  * Get /new
  * Handles form for adding books
@@ -122,7 +121,6 @@ router.get('/:id', asyncHandler(async (req, res) => {
   try{
     const book = await Book.findByPk(req.params.id);
     res.render('update-book', {book} );
-    console.log('try');
   } catch(error) {
     console.log('catch');
     //Otherwise, Build the error on the form page
@@ -130,7 +128,6 @@ router.get('/:id', asyncHandler(async (req, res) => {
       book = await Book.build(req.body);
       res.render("update-book", { book, errors: error.errors});
     } else {
-      console.log('else');
       throw error;
     }
   }
